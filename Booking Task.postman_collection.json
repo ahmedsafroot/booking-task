@@ -1,0 +1,374 @@
+{
+	"info": {
+		"_postman_id": "90aff5d4-6b46-4d05-b59c-2ca0dc3e1339",
+		"name": "Booking Task",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20000275",
+		"_collection_link": "https://grey-astronaut-28811.postman.co/workspace/New-Team-Workspace~444f282c-7be3-4ad8-a573-0454c51a854e/collection/20000275-90aff5d4-6b46-4d05-b59c-2ca0dc3e1339?action=share&source=collection_link&creator=20000275"
+	},
+	"item": [
+		{
+			"name": "Available Slots",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/api/pitches/2/slots?date=2025-09-27",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"pitches",
+						"2",
+						"slots"
+					],
+					"query": [
+						{
+							"key": "date",
+							"value": "2025-09-27"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "http://127.0.0.1:8000/api/pitches/1/slots",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/pitches/2/slots?date=2025-09-27",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"pitches",
+								"2",
+								"slots"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "2025-09-27"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "",
+					"header": [
+						{
+							"key": "Host",
+							"value": "127.0.0.1:8000"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.2.18"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 27 Sep 2025 10:37:39 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": true,\n    \"message\": \"Success\",\n    \"data\": {\n        \"slots\": [\n            {\n                \"start_time\": \"17:00\",\n                \"end_time\": \"18:30\"\n            },\n            {\n                \"start_time\": \"18:30\",\n                \"end_time\": \"20:00\"\n            },\n            {\n                \"start_time\": \"20:00\",\n                \"end_time\": \"21:30\"\n            },\n            {\n                \"start_time\": \"21:30\",\n                \"end_time\": \"23:00\"\n            }\n        ]\n    }\n}"
+				},
+				{
+					"name": "http://127.0.0.1:8000/api/pitches/1/slots",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/pitches/2/slots?date=2025-09-26",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"pitches",
+								"2",
+								"slots"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "2025-09-26"
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "",
+					"header": [
+						{
+							"key": "Host",
+							"value": "127.0.0.1:8000"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.2.18"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 27 Sep 2025 10:38:26 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": false,\n    \"message\": \"Cannot view slots for past dates\",\n    \"errors\": []\n}"
+				}
+			]
+		},
+		{
+			"name": "Book a Slot",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"pitch_id\":2,\r\n    \"date\":\"2025-09-27\",\r\n    \"start_time\":\"15:00\",\r\n    \"end_time\":\"16:30\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/bookings",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"bookings"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "http://127.0.0.1:8000/api/pitches/1/slots Copy",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"pitch_id\":2,\r\n    \"date\":\"2025-09-27\",\r\n    \"start_time\":\"15:00\",\r\n    \"end_time\":\"16:30\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/bookings",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"bookings"
+							]
+						}
+					},
+					"status": "Unprocessable Content",
+					"code": 422,
+					"_postman_previewlanguage": "",
+					"header": [
+						{
+							"key": "Host",
+							"value": "127.0.0.1:8000"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.2.18"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 27 Sep 2025 10:38:32 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": false,\n    \"message\": \"Validation failed\",\n    \"errors\": {\n        \"slot\": [\n            \"Slot already booked\"\n        ]\n    }\n}"
+				},
+				{
+					"name": "http://127.0.0.1:8000/api/pitches/1/slots Copy",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"pitch_id\":2,\r\n    \"date\":\"2025-09-27\",\r\n    \"start_time\":\"17:00\",\r\n    \"end_time\":\"18:30\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/bookings",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"bookings"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "",
+					"header": [
+						{
+							"key": "Host",
+							"value": "127.0.0.1:8000"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.2.18"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 27 Sep 2025 10:39:00 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": true,\n    \"message\": \"Booking a slot successfully\",\n    \"data\": {\n        \"slot\": {\n            \"pitch_id\": 2,\n            \"date\": \"2025-09-27\",\n            \"start_time\": \"17:00\",\n            \"end_time\": \"18:30\",\n            \"updated_at\": \"2025-09-27T10:39:00.000000Z\",\n            \"created_at\": \"2025-09-27T10:39:00.000000Z\",\n            \"id\": 5\n        }\n    }\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": ""
+		}
+	]
+}
