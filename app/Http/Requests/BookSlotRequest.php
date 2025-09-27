@@ -3,11 +3,15 @@
 namespace App\Http\Requests;
 
 use App\Models\Booking;
+use App\Traits\ApiResponse;
 use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class BookSlotRequest extends FormRequest
 {
+    use ApiResponse;
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -76,4 +80,13 @@ class BookSlotRequest extends FormRequest
             }
         });
     }
+
+
+    public function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(
+            $this->error('Validation failed',422, $validator->errors())
+        );
+    }
+
 }

@@ -17,7 +17,7 @@ class BookingController extends Controller
     {
         $pitch = Pitch::find($pitchId);
         if (!$pitch) {
-            return response()->json(['error' => 'Pitch not found'], 404);
+            return $this->notFound('Pitch not found');
         }
 
         $dateInput = $request->query('date');
@@ -26,7 +26,7 @@ class BookingController extends Controller
 
         // reject past dates
         if ($date->lt($today)) {
-            return response()->json(['error' => 'Cannot view slots for past dates'], 400);
+            return $this->error('Cannot view slots for past dates');
         }
 
         $slotDuration = (int) $request->query('duration', 90); // default 90 min
@@ -64,16 +64,14 @@ class BookingController extends Controller
 
             $startTime->addMinutes($slotDuration);
         }
-
-        return response()->json($slots);
+        return $this->success(['slots'=>$slots]);
     }
     public function book(BookSlotRequest $request): JsonResponse
     {
         $validated = $request->validated();
 
         $booking = Booking::create($validated);
-
-        return response()->json(['message' => 'Booking successful', 'booking' => $booking]);
+        return $this->success(['slot'=>$booking],'Booking a slot successfully',201);
     }
 
 }
