@@ -122,5 +122,6 @@ return [
         'driver' => env('APP_MAINTENANCE_DRIVER', 'file'),
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
-
+    'seed_stadium_count' => env('SEED_STADIUM_COUNT',2),
+    'seed_pitch_count'   =>env ('SEED_PITCH_COUNT',3)
 ];
